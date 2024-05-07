@@ -5,9 +5,11 @@ import {
   CardBody,
   CardFooter,
   Divider,
+  HStack,
   Heading,
   Image,
   Text,
+  VStack,
 } from "@chakra-ui/react";
 
 interface Props {
@@ -16,17 +18,16 @@ interface Props {
 const MediaCard = ({ movie }: Props) => {
   const image_url = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
 
-  const date = Moment(movie.release_date).format("d MMM YY");
+  const date = Moment(movie.release_date).format("MMM YY");
   return (
     <Card borderRadius={20} overflow="hidden">
       <Image src={image_url} />
       <CardBody>
-        <Heading>{movie.title}</Heading>
-        <Divider marginTop={2} />
+        <Heading fontSize="2xl">{movie.title}</Heading>
       </CardBody>
-      <CardFooter>
+      <HStack>
         <Text>{date}</Text>
-      </CardFooter>
+      </HStack>
     </Card>
   );
 };

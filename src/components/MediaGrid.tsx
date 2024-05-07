@@ -11,6 +11,8 @@ const MediaGrid = () => {
       padding={5}
       spacing={6}
     >
+      {error && <Text>{error}</Text>}
+
       {movies.map((movie) => (
         <MediaCard key={movie.id} movie={movie} />
       ))}

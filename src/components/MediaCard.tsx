@@ -4,13 +4,10 @@ import {
   Badge,
   Card,
   CardBody,
-  CardFooter,
-  Divider,
   HStack,
   Heading,
   Image,
   Text,
-  VStack,
 } from "@chakra-ui/react";
 
 interface Props {

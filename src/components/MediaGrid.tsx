@@ -7,7 +7,7 @@ const MediaGrid = () => {
 
   return (
     <SimpleGrid
-      columns={{ sm: 1, md: 2, lg: 4, xl: 6 }}
+      columns={{ sm: 1, md: 2, lg: 4, xl: 5 }}
       padding={5}
       spacing={6}
     >

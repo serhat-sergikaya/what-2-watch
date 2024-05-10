@@ -1,9 +1,14 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMovies from "../hooks/useMovies";
 import MediaCard from "./MediaCard";
+import { Genre } from "../hooks/useGenres";
 
-const MediaGrid = () => {
-  const { movies, error } = useMovies();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+const MediaGrid = ({ selectedGenre }: Props) => {
+  const { movies, error } = useMovies(selectedGenre);
 
   return (
     <SimpleGrid

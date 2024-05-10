@@ -2,13 +2,16 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMovies from "../hooks/useMovies";
 import MediaCard from "./MediaCard";
 import { Genre } from "../hooks/useGenres";
+import MediaCardSkeleton from "./MediaCardSkeleton";
 
 interface Props {
   selectedGenre: Genre | null;
 }
 
 const MediaGrid = ({ selectedGenre }: Props) => {
-  const { movies, error } = useMovies(selectedGenre);
+  const { movies, error, isLoading } = useMovies(selectedGenre);
+
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <SimpleGrid
@@ -17,6 +20,8 @@ const MediaGrid = ({ selectedGenre }: Props) => {
       spacing={6}
     >
       {error && <Text>{error}</Text>}
+
+      {isLoading && skeletons.map(() => <MediaCardSkeleton />)}
 
       {movies.map((movie) => (
         <MediaCard key={movie.id} movie={movie} />

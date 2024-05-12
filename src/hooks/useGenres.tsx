@@ -19,7 +19,7 @@ const useGenres = () => {
     const controller = new AbortController();
 
     apiClient
-      .get<FetchGenresResponse>("/genre/movie/list", {
+      .get<FetchGenresResponse>("/genre/tv/list", {
         signal: controller.signal,
       })
       .then((res) => setGenres(res.data.genres))

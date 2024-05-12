@@ -5,9 +5,14 @@ import NavBar from "./components/NavBar";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
+import MediaSelector from "./components/MediaSelector";
+import MainContainer from "./components/MainContainer";
+import SelectorContainer from "./components/SelectorContainer";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState("");
+  const [searchInput, setSearchInput] = useState("");
 
   return (
     <Grid
@@ -17,22 +22,34 @@ function App() {
       }}
       templateColumns={{
         base: "1fr",
-        lg: "200px 1fr",
+        lg: "240px 1fr",
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar onSearch={(searchText) => setSearchInput(searchText)} />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
           <GenreList
             selectedGenre={selectedGenre}
             onGenreSelect={(genre) => setSelectedGenre(genre)}
+            selectedMedia={selectedMedia}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
-        <MediaGrid selectedGenre={selectedGenre} />
+        <MainContainer>
+          <SelectorContainer>
+            <MediaSelector
+              onSelectMediaType={(media) => setSelectedMedia(media)}
+              selectedMedia={selectedMedia}
+            />
+          </SelectorContainer>
+          <MediaGrid
+            selectedGenre={selectedGenre}
+            selectedMedia={selectedMedia}
+          />
+        </MainContainer>
       </GridItem>
     </Grid>
   );

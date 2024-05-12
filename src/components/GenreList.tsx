@@ -1,4 +1,4 @@
-import useGenres, { Genre } from "../hooks/useGenres";
+import { Genre } from "../hooks/useGenres";
 import {
   Button,
   HStack,
@@ -7,17 +7,20 @@ import {
   List,
   ListItem,
 } from "@chakra-ui/react";
-import genres from "../data/genres";
+import movieGenres from "../data/movie-genres";
+import tvGenres from "../data/tv-genres";
 
 interface Props {
   selectedGenre: Genre | null;
   onGenreSelect: (genre: Genre) => void;
+  selectedMedia: string;
 }
 
-const GenreList = ({ onGenreSelect, selectedGenre }: Props) => {
+const GenreList = ({ onGenreSelect, selectedGenre, selectedMedia }: Props) => {
+  let genres = selectedMedia === "TV Shows" ? tvGenres : movieGenres;
   return (
     <List marginX={5}>
-      <Heading size="xl" marginBottom={3}>
+      <Heading size="lg" marginBottom={3}>
         Genres
       </Heading>
       {genres.map((genre) => (

@@ -1,7 +1,7 @@
-import { Genre } from "./useGenres";
 import useData from "./useData";
+import { Genre } from "./useGenres";
 
-export interface Movie {
+export interface Show {
   id: number;
   title: string;
   poster_path: string;
@@ -9,9 +9,9 @@ export interface Movie {
   vote_average: number;
 }
 
-const useMovies = (selectedGenre: Genre | null, selectedMedia: string) =>
-  useData<Movie>(
-    "/discover/movie",
+const useShows = (selectedGenre: Genre | null, selectedMedia: string) =>
+  useData<Show>(
+    "/discover/tv",
     {
       params: {
         with_genres: selectedGenre?.id,
@@ -20,4 +20,4 @@ const useMovies = (selectedGenre: Genre | null, selectedMedia: string) =>
     [selectedGenre, selectedMedia]
   );
 
-export default useMovies;
+export default useShows;

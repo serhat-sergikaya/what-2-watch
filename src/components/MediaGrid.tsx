@@ -1,20 +1,26 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import useMovies from "../hooks/useMovies";
+import useMedia from "../hooks/useMedia";
 import MediaCard from "./MediaCard";
 import { Genre } from "../hooks/useGenres";
 import MediaCardSkeleton from "./MediaCardSkeleton";
 import useShows from "../hooks/useShows";
+import useSearch from "../hooks/useSearch";
 
 interface Props {
   selectedGenre: Genre | null;
   selectedMedia: string;
+  searchInput: string;
 }
 
-const MediaGrid = ({ selectedGenre, selectedMedia }: Props) => {
-  const { data, error, isLoading } =
-    selectedMedia === "TV Shows"
-      ? useShows(selectedGenre, selectedMedia)
-      : useMovies(selectedGenre, selectedMedia);
+const MediaGrid = ({ selectedGenre, selectedMedia, searchInput }: Props) => {
+  const endpoint =
+    selectedMedia === "TV Shows" ? "/discover/tv" : "/discover/movie";
+  const endpointSearch =
+    selectedMedia === "TV Shows" ? "/search/tv" : "/search/movie";
+
+  const { data, error, isLoading } = searchInput
+    ? useSearch(selectedGenre, selectedMedia, searchInput, endpointSearch)
+    : useMedia(selectedGenre, selectedMedia, endpoint);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

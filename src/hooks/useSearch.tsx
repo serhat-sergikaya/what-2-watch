@@ -1,18 +1,21 @@
-interface Search{
-    id:number
-    title: string
-    poster_path: string
-}
-const useSearch = (selectedGenre: Genre | null, selectedMedia: string) =>
-    useData<Show>(
-      "/discover/tv",
-      {
-        params: {
-          with_genres: selectedGenre?.id,
-        },
-      },
-      [selectedGenre, selectedMedia]
-    );
-}
+import useData from "./useData";
+import { Genre } from "./useGenres";
+import { Media } from "./useMedia";
 
-export default useSearch
+const useSearch = (
+  selectedGenre: Genre | null,
+  selectedMedia: string,
+  searchInput: string,
+  endpoint: string
+) =>
+  useData<Media>(
+    endpoint,
+    {
+      params: {
+        query: searchInput,
+      },
+    },
+    [selectedGenre, selectedMedia, searchInput]
+  );
+
+export default useSearch;

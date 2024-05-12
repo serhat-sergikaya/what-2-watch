@@ -1,4 +1,4 @@
-import { Movie } from "../hooks/useMovies";
+import { Media } from "../hooks/useMedia";
 import Moment from "moment";
 import {
   Badge,
@@ -11,14 +11,21 @@ import {
 } from "@chakra-ui/react";
 
 interface Props {
-  movie: Movie;
+  movie: Media;
 }
 const MediaCard = ({ movie }: Props) => {
-  let image_url = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+  let image_url = movie.poster_path
+    ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
+    : "src/assets/No-Image-Placeholder.svg.png";
 
-  let date = Moment(movie.release_date).format("MMM YYYY");
+  let date = movie.release_date
+    ? Moment(movie.release_date).format("MMM YYYY")
+    : "";
 
   let rating = Number(movie.vote_average).toFixed(1);
+  let showDate = movie.first_air_date
+    ? Moment(movie.first_air_date).format("MMM YYYY")
+    : "";
 
   let ratingColor =
     movie.vote_average > 7.5
@@ -33,7 +40,10 @@ const MediaCard = ({ movie }: Props) => {
       <Image src={image_url} />
       <CardBody>
         <HStack marginBottom={2} justifyContent="space-between">
-          <Text>{date}</Text>
+          <Text>
+            {date}
+            {showDate}
+          </Text>
           <Badge
             variant="solid"
             fontSize={15}
@@ -43,7 +53,9 @@ const MediaCard = ({ movie }: Props) => {
             {rating}
           </Badge>
         </HStack>
-        <Heading fontSize="2xl">{movie.title}</Heading>
+        <Heading fontSize="2xl">
+          {movie.title} {movie.name}
+        </Heading>
       </CardBody>
     </Card>
   );

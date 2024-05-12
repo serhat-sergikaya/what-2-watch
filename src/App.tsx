@@ -48,6 +48,7 @@ function App() {
           <MediaGrid
             selectedGenre={selectedGenre}
             selectedMedia={selectedMedia}
+            searchInput={searchInput}
           />
         </MainContainer>
       </GridItem>

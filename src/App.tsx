@@ -3,7 +3,7 @@ import "./App.css";
 import MediaGrid from "./components/MediaGrid";
 import NavBar from "./components/NavBar";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import MediaSelector from "./components/MediaSelector";
 import MainContainer from "./components/MainContainer";
@@ -15,6 +15,10 @@ function App() {
   const [selectedMedia, setSelectedMedia] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [sortValue, setSortValue] = useState("");
+
+  useEffect(() => {
+    setSelectedGenre(null);
+  }, [selectedMedia]);
 
   return (
     <Grid

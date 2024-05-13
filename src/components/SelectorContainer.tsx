@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Box, HStack } from "@chakra-ui/react";
 import React from "react";
 
 interface Props {
@@ -6,7 +6,11 @@ interface Props {
 }
 
 const SelectorContainer = ({ children }: Props) => {
-  return <Box marginY={5}>{children}</Box>;
+  return (
+    <HStack marginY={5} spacing={5}>
+      {children}
+    </HStack>
+  );
 };
 
 export default SelectorContainer;

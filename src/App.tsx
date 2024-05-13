@@ -8,11 +8,13 @@ import { Genre } from "./hooks/useGenres";
 import MediaSelector from "./components/MediaSelector";
 import MainContainer from "./components/MainContainer";
 import SelectorContainer from "./components/SelectorContainer";
+import SortSelector from "./components/SortSelector";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const [selectedMedia, setSelectedMedia] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [sortValue, setSortValue] = useState("");
 
   return (
     <Grid
@@ -44,11 +46,17 @@ function App() {
               onSelectMediaType={(media) => setSelectedMedia(media)}
               selectedMedia={selectedMedia}
             />
+            <SortSelector
+              sortSelected={(sortvalue) => setSortValue(sortvalue)}
+              selectedMedia={selectedMedia}
+              sortValue={sortValue}
+            />
           </SelectorContainer>
           <MediaGrid
             selectedGenre={selectedGenre}
             selectedMedia={selectedMedia}
             searchInput={searchInput}
+            sortValue={sortValue}
           />
         </MainContainer>
       </GridItem>

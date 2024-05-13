@@ -3,16 +3,21 @@ import useMedia from "../hooks/useMedia";
 import MediaCard from "./MediaCard";
 import { Genre } from "../hooks/useGenres";
 import MediaCardSkeleton from "./MediaCardSkeleton";
-import useShows from "../hooks/useShows";
 import useSearch from "../hooks/useSearch";
 
 interface Props {
   selectedGenre: Genre | null;
   selectedMedia: string;
   searchInput: string;
+  sortValue: string;
 }
 
-const MediaGrid = ({ selectedGenre, selectedMedia, searchInput }: Props) => {
+const MediaGrid = ({
+  selectedGenre,
+  selectedMedia,
+  searchInput,
+  sortValue,
+}: Props) => {
   const endpoint =
     selectedMedia === "TV Shows" ? "/discover/tv" : "/discover/movie";
   const endpointSearch =
@@ -20,7 +25,7 @@ const MediaGrid = ({ selectedGenre, selectedMedia, searchInput }: Props) => {
 
   const { data, error, isLoading } = searchInput
     ? useSearch(selectedGenre, selectedMedia, searchInput, endpointSearch)
-    : useMedia(selectedGenre, selectedMedia, endpoint);
+    : useMedia(selectedGenre, selectedMedia, endpoint, sortValue);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

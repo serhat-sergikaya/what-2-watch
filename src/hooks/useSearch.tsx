@@ -13,6 +13,7 @@ const useSearch = (
     {
       params: {
         query: searchInput,
+        with_genres: selectedGenre?.id,
       },
     },
     [selectedGenre, selectedMedia, searchInput]

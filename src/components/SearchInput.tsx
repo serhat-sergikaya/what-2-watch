@@ -1,5 +1,5 @@
 import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { useState } from "react";
+import { color } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
 
 interface Props {
@@ -7,20 +7,22 @@ interface Props {
 }
 
 const SearchInput = ({ onSearchValueEntered }: Props) => {
-  const [input, setInput] = useState("");
-
   const handleChange = (searchText: string) => {
     onSearchValueEntered(searchText);
     console.log(searchText);
   };
   return (
     <InputGroup>
-      <Box></Box>
-      <InputLeftElement>
+      <InputLeftElement _groupHover={{ color: "black" }}>
         <FaSearch />
       </InputLeftElement>
       <Input
-        bg={"#303030"}
+        _groupHover={{ _placeholder: { color: "black" }, bg: "white" }}
+        _focus={{
+          _placeholder: { color: "black" },
+          bg: "white",
+          color: "black",
+        }}
         borderRadius={20}
         placeholder="Search Movies/TV Shows..."
         onChange={(e) => handleChange(e.target.value)}

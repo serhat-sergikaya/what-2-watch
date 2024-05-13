@@ -14,16 +14,18 @@ export interface Media {
 const useMedia = (
   selectedGenre: Genre | null,
   selectedMedia: string,
-  endpoint: string
+  endpoint: string,
+  sortValue: string
 ) =>
   useData<Media>(
     endpoint,
     {
       params: {
         with_genres: selectedGenre?.id,
+        sort_by: sortValue,
       },
     },
-    [selectedGenre, selectedMedia]
+    [selectedGenre, selectedMedia, sortValue]
   );
 
 export default useMedia;

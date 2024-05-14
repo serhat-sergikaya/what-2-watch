@@ -1,5 +1,4 @@
-import { Box, Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
-import { color } from "framer-motion";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 
 interface Props {

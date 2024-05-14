@@ -7,7 +7,7 @@ interface Props {
 
 const SelectorContainer = ({ children }: Props) => {
   return (
-    <HStack marginY={5} spacing={5}>
+    <HStack marginY={8} spacing={5}>
       {children}
     </HStack>
   );

@@ -9,6 +9,7 @@ import MediaSelector from "./components/MediaSelector";
 import MainContainer from "./components/MainContainer";
 import SelectorContainer from "./components/SelectorContainer";
 import SortSelector from "./components/SortSelector";
+import MediaHeading from "./components/MediaHeading";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -45,6 +46,10 @@ function App() {
       </Show>
       <GridItem area="main">
         <MainContainer>
+          <MediaHeading
+            selectedGenre={selectedGenre}
+            selectedMedia={selectedMedia}
+          />
           <SelectorContainer>
             <MediaSelector
               onSelectMediaType={(media) => setSelectedMedia(media)}

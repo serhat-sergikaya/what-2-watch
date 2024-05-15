@@ -1,5 +1,6 @@
 import { Media } from "../hooks/useMedia";
 import Moment from "moment";
+import noMediaPhoto from "../assets/No-Image-Placeholder.png";
 import {
   Badge,
   Card,
@@ -16,7 +17,7 @@ interface Props {
 const MediaCard = ({ movie }: Props) => {
   let image_url = movie.poster_path
     ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
-    : "src/assets/No-Image-Placeholder.png";
+    : noMediaPhoto;
 
   let date = movie.release_date
     ? Moment(movie.release_date).format("MMM YYYY")

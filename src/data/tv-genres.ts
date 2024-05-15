@@ -1,82 +1,98 @@
+import action from "../assets/movieGenreIcons/action.png";
+import kids from "../assets/movieGenreIcons/kids.png";
+import animation from "../assets/movieGenreIcons/animation.png";
+import comedy from "../assets/movieGenreIcons/comedy.png";
+import crime from "../assets/movieGenreIcons/crime.png";
+import documentary from "../assets/movieGenreIcons/documentary.png";
+import drama from "../assets/movieGenreIcons/drama.png";
+import family from "../assets/movieGenreIcons/family.png";
+import reality from "../assets/movieGenreIcons/reality.png";
+import news from "../assets/movieGenreIcons/news.png";
+import mystery from "../assets/movieGenreIcons/mystery.png";
+import soap from "../assets/movieGenreIcons/soap.png";
+import sciFi from "../assets/movieGenreIcons/sci-fi.png";
+import talk from "../assets/movieGenreIcons/talk.png";
+import war from "../assets/movieGenreIcons/war.png";
+import western from "../assets/movieGenreIcons/western.png";
 export default [
   {
     id: 10759,
     name: "Action & Adventure",
-    image: "src/assets/movieGenreIcons/action.png",
+    image: action,
   },
   {
     id: 16,
     name: "Animation",
-    image: "src/assets/movieGenreIcons/animation.png",
+    image: animation,
   },
   {
     id: 35,
     name: "Comedy",
-    image: "src/assets/movieGenreIcons/comedy.png",
+    image: comedy,
   },
   {
     id: 80,
     name: "Crime",
-    image: "src/assets/movieGenreIcons/crime.png",
+    image: crime,
   },
   {
     id: 99,
     name: "Documentary",
-    image: "src/assets/movieGenreIcons/documentary.png",
+    image: documentary,
   },
   {
     id: 18,
     name: "Drama",
-    image: "src/assets/movieGenreIcons/drama.png",
+    image: drama,
   },
   {
     id: 10751,
     name: "Family",
-    image: "src/assets/movieGenreIcons/family.png",
+    image: family,
   },
   {
     id: 10762,
     name: "Kids",
-    image: "src/assets/movieGenreIcons/kids.png",
+    image: kids,
   },
   {
     id: 9648,
     name: "Mystery",
-    image: "src/assets/movieGenreIcons/mystery.png",
+    image: mystery,
   },
   {
     id: 10763,
     name: "News",
-    image: "src/assets/movieGenreIcons/news.png",
+    image: news,
   },
   {
     id: 10764,
     name: "Reality",
-    image: "src/assets/movieGenreIcons/reality.png",
+    image: reality,
   },
   {
     id: 10765,
     name: "Sci-Fi & Fantasy",
-    image: "src/assets/movieGenreIcons/sci-fi.png",
+    image: sciFi,
   },
   {
     id: 10766,
     name: "Soap",
-    image: "src/assets/movieGenreIcons/soap.png",
+    image: soap,
   },
   {
     id: 10767,
     name: "Talk",
-    image: "src/assets/movieGenreIcons/talk.png",
+    image: talk,
   },
   {
     id: 10768,
     name: "War & Politics",
-    image: "src/assets/movieGenreIcons/war.png",
+    image: war,
   },
   {
     id: 37,
     name: "Western",
-    image: "src/assets/movieGenreIcons/western.png",
+    image: western,
   },
 ];

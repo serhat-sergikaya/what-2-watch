@@ -16,7 +16,7 @@ interface Props {
 const MediaCard = ({ movie }: Props) => {
   let image_url = movie.poster_path
     ? "https://image.tmdb.org/t/p/w500" + movie.poster_path
-    : "src/assets/No-Image-Placeholder.svg.png";
+    : "src/assets/No-Image-Placeholder.png";
 
   let date = movie.release_date
     ? Moment(movie.release_date).format("MMM YYYY")

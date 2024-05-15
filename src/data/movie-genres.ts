@@ -1,8 +1,10 @@
+import action from "../assets/movieGenreIcons/action.png";
+
 export default [
   {
     id: 28,
     name: "Action",
-    image: "src/assets/movieGenreIcons/action.png",
+    image: action,
   },
   {
     id: 12,

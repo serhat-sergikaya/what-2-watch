@@ -1,4 +1,4 @@
-import { Button, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import useMedia from "../hooks/useMedia";
 import MediaCard from "./MediaCard";
 import MediaCardSkeleton from "./MediaCardSkeleton";
@@ -19,14 +19,10 @@ const MediaGrid = ({ mediaQuery }: Props) => {
   const endpointSearch =
     mediaQuery.selectedMedia === "TV Shows" ? "/search/tv" : "/search/movie";
 
-  const {
-    data,
-    error,
-    isLoading,
-    fetchNextPage,
-    isFetchingNextPage,
-    hasNextPage,
-  } = useMedia(mediaQuery, endpoint);
+  const { data, error, isLoading, fetchNextPage, hasNextPage } =
+    mediaQuery.searchInput
+      ? useSearch(mediaQuery, endpointSearch)
+      : useMedia(mediaQuery, endpoint);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   const totalMedia =

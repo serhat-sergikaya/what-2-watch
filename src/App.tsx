@@ -3,7 +3,7 @@ import "./App.css";
 import MediaGrid from "./components/MediaGrid";
 import NavBar from "./components/NavBar";
 import GenreList from "./components/GenreList";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MediaSelector from "./components/MediaSelector";
 import MainContainer from "./components/MainContainer";
 import SelectorContainer from "./components/SelectorContainer";

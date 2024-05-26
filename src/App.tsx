@@ -4,22 +4,21 @@ import MediaGrid from "./components/MediaGrid";
 import NavBar from "./components/NavBar";
 import GenreList from "./components/GenreList";
 import { useEffect, useState } from "react";
-import { Genre } from "./hooks/useGenres";
 import MediaSelector from "./components/MediaSelector";
 import MainContainer from "./components/MainContainer";
 import SelectorContainer from "./components/SelectorContainer";
 import SortSelector from "./components/SortSelector";
 import MediaHeading from "./components/MediaHeading";
 
-function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedMedia, setSelectedMedia] = useState("");
-  const [searchInput, setSearchInput] = useState("");
-  const [sortValue, setSortValue] = useState("");
+export interface MediaQuery {
+  selectedGenreId?: number;
+  selectedMedia: string;
+  searchInput: string;
+  sortValue: string;
+}
 
-  useEffect(() => {
-    setSelectedGenre(null);
-  }, [selectedMedia]);
+function App() {
+  const [mediaQuery, setMediaQuery] = useState<MediaQuery>({} as MediaQuery);
 
   return (
     <Grid
@@ -33,40 +32,45 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar onSearch={(searchText) => setSearchInput(searchText)} />
+        <NavBar
+          onSearch={(searchInput) =>
+            setMediaQuery({ ...mediaQuery, searchInput })
+          }
+        />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
           <GenreList
-            selectedGenre={selectedGenre}
-            onGenreSelect={(genre) => setSelectedGenre(genre)}
-            selectedMedia={selectedMedia}
+            selectedGenreId={mediaQuery.selectedGenreId}
+            onGenreSelect={(selectedGenreId) =>
+              setMediaQuery({ ...mediaQuery, selectedGenreId })
+            }
+            selectedMedia={mediaQuery.selectedMedia}
           />
         </GridItem>
       </Show>
       <GridItem area="main">
         <MainContainer>
           <MediaHeading
-            selectedGenre={selectedGenre}
-            selectedMedia={selectedMedia}
+            selectedGenreId={mediaQuery.selectedGenreId}
+            selectedMedia={mediaQuery.selectedMedia}
           />
           <SelectorContainer>
             <MediaSelector
-              onSelectMediaType={(media) => setSelectedMedia(media)}
-              selectedMedia={selectedMedia}
+              onSelectMediaType={(selectedMedia) =>
+                setMediaQuery({ ...mediaQuery, selectedMedia })
+              }
+              selectedMedia={mediaQuery.selectedMedia}
             />
             <SortSelector
-              sortSelected={(sortvalue) => setSortValue(sortvalue)}
-              selectedMedia={selectedMedia}
-              sortValue={sortValue}
+              sortSelected={(sortValue) =>
+                setMediaQuery({ ...mediaQuery, sortValue })
+              }
+              selectedMedia={mediaQuery.selectedMedia}
+              sortValue={mediaQuery.sortValue}
             />
           </SelectorContainer>
-          <MediaGrid
-            selectedGenre={selectedGenre}
-            selectedMedia={selectedMedia}
-            searchInput={searchInput}
-            sortValue={sortValue}
-          />
+          <MediaGrid mediaQuery={mediaQuery} />
         </MainContainer>
       </GridItem>
     </Grid>

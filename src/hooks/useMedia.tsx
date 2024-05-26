@@ -1,5 +1,7 @@
-import { Genre } from "./useGenres";
-import useData from "./useData";
+import useData, { fetchResponse } from "./useData";
+import { MediaQuery } from "../App";
+import { useQuery } from "@tanstack/react-query";
+import apiClient from "../services/apiClient";
 
 export interface Media {
   id: number;
@@ -11,21 +13,18 @@ export interface Media {
   first_air_date: string;
 }
 
-const useMedia = (
-  selectedGenre: Genre | null,
-  selectedMedia: string,
-  endpoint: string,
-  sortValue: string
-) =>
-  useData<Media>(
-    endpoint,
-    {
-      params: {
-        with_genres: selectedGenre?.id,
-        sort_by: sortValue,
-      },
-    },
-    [selectedGenre, selectedMedia, sortValue]
-  );
+const useMedia = (mediaQuery: MediaQuery, endpoint: string) =>
+  useQuery<fetchResponse<Media>>({
+    queryKey: ["media", mediaQuery],
+    queryFn: () =>
+      apiClient
+        .get<fetchResponse<Media>>(endpoint, {
+          params: {
+            with_genres: mediaQuery.selectedGenreId,
+            sort_by: mediaQuery.sortValue,
+          },
+        })
+        .then((res) => res.data),
+  });
 
 export default useMedia;

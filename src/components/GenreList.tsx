@@ -1,4 +1,3 @@
-import { Genre } from "../hooks/useGenres";
 import {
   Button,
   HStack,
@@ -11,12 +10,16 @@ import movieGenres from "../data/movie-genres";
 import tvGenres from "../data/tv-genres";
 
 interface Props {
-  selectedGenre: Genre | null;
-  onGenreSelect: (genre: Genre) => void;
+  selectedGenreId?: number;
+  onGenreSelect: (genreId: number) => void;
   selectedMedia: string;
 }
 
-const GenreList = ({ onGenreSelect, selectedGenre, selectedMedia }: Props) => {
+const GenreList = ({
+  onGenreSelect,
+  selectedGenreId,
+  selectedMedia,
+}: Props) => {
   let genres = selectedMedia === "TV Shows" ? tvGenres : movieGenres;
   return (
     <List marginX={5}>
@@ -35,8 +38,8 @@ const GenreList = ({ onGenreSelect, selectedGenre, selectedMedia }: Props) => {
             <Button
               variant="link"
               size="lg"
-              onClick={() => onGenreSelect(genre)}
-              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+              onClick={() => onGenreSelect(genre.id)}
+              fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
             >
               {genre.name}
             </Button>

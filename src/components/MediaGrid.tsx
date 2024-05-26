@@ -1,42 +1,36 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import useMedia from "../hooks/useMedia";
 import MediaCard from "./MediaCard";
-import { Genre } from "../hooks/useGenres";
 import MediaCardSkeleton from "./MediaCardSkeleton";
 import useSearch from "../hooks/useSearch";
+import { MediaQuery } from "../App";
 
 interface Props {
-  selectedGenre: Genre | null;
-  selectedMedia: string;
-  searchInput: string;
-  sortValue: string;
+  mediaQuery: MediaQuery;
 }
 
-const MediaGrid = ({
-  selectedGenre,
-  selectedMedia,
-  searchInput,
-  sortValue,
-}: Props) => {
+const MediaGrid = ({ mediaQuery }: Props) => {
   const endpoint =
-    selectedMedia === "TV Shows" ? "/discover/tv" : "/discover/movie";
+    mediaQuery.selectedMedia === "TV Shows"
+      ? "/discover/tv"
+      : "/discover/movie";
   const endpointSearch =
-    selectedMedia === "TV Shows" ? "/search/tv" : "/search/movie";
+    mediaQuery.selectedMedia === "TV Shows" ? "/search/tv" : "/search/movie";
 
-  const { data, error, isLoading } = searchInput
-    ? useSearch(selectedGenre, selectedMedia, searchInput, endpointSearch)
-    : useMedia(selectedGenre, selectedMedia, endpoint, sortValue);
+  const { data, error, isLoading } = mediaQuery.searchInput
+    ? useSearch(mediaQuery, endpointSearch)
+    : useMedia(mediaQuery, endpoint);
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing={6}>
-      {error && <Text>{error}</Text>}
+      {error && <Text>{error.message}</Text>}
 
       {isLoading &&
         skeletons.map((skeleton) => <MediaCardSkeleton key={skeleton} />)}
 
-      {data.map((media) => (
+      {data?.results.map((media) => (
         <MediaCard key={media.id} movie={media} />
       ))}
     </SimpleGrid>

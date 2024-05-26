@@ -1,8 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
 import { MediaQuery } from "../App";
-import useData, { fetchResponse } from "./useData";
-import { Media } from "./useMedia";
+import { Media, fetchResponse } from "./useMedia";
 import apiClient from "../services/apiClient";
+import { useQuery } from "@tanstack/react-query";
 
 const useSearch = (mediaQuery: MediaQuery, endpoint: string) =>
   useQuery<fetchResponse<Media>>({

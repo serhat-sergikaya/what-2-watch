@@ -1,14 +1,12 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
+import useMediaQueryStore from "../store";
 
-interface Props {
-  onSearchValueEntered: (searchText: string) => void;
-}
+const SearchInput = () => {
+  const setSearchText = useMediaQueryStore((s) => s.setSearchText);
 
-const SearchInput = ({ onSearchValueEntered }: Props) => {
   const handleChange = (searchText: string) => {
-    onSearchValueEntered(searchText);
-    console.log(searchText);
+    setSearchText(searchText);
   };
   return (
     <InputGroup>

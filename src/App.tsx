@@ -1,25 +1,15 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import "./App.css";
-import MediaGrid from "./components/MediaGrid";
-import NavBar from "./components/NavBar";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
-import MediaSelector from "./components/MediaSelector";
 import MainContainer from "./components/MainContainer";
+import MediaGrid from "./components/MediaGrid";
+import MediaHeading from "./components/MediaHeading";
+import MediaSelector from "./components/MediaSelector";
+import NavBar from "./components/NavBar";
 import SelectorContainer from "./components/SelectorContainer";
 import SortSelector from "./components/SortSelector";
-import MediaHeading from "./components/MediaHeading";
-
-export interface MediaQuery {
-  selectedGenreId?: number;
-  selectedMedia: string;
-  searchInput: string;
-  sortValue: string;
-}
 
 function App() {
-  const [mediaQuery, setMediaQuery] = useState<MediaQuery>({} as MediaQuery);
-
   return (
     <Grid
       templateAreas={{
@@ -32,45 +22,21 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar
-          onSearch={(searchInput) =>
-            setMediaQuery({ ...mediaQuery, searchInput })
-          }
-        />
+        <NavBar />
       </GridItem>
       <Show above="lg">
         <GridItem area="aside">
-          <GenreList
-            selectedGenreId={mediaQuery.selectedGenreId}
-            onGenreSelect={(selectedGenreId) =>
-              setMediaQuery({ ...mediaQuery, selectedGenreId })
-            }
-            selectedMedia={mediaQuery.selectedMedia}
-          />
+          <GenreList />
         </GridItem>
       </Show>
       <GridItem area="main">
         <MainContainer>
-          <MediaHeading
-            selectedGenreId={mediaQuery.selectedGenreId}
-            selectedMedia={mediaQuery.selectedMedia}
-          />
+          <MediaHeading />
           <SelectorContainer>
-            <MediaSelector
-              onSelectMediaType={(selectedMedia) =>
-                setMediaQuery({ ...mediaQuery, selectedMedia })
-              }
-              selectedMedia={mediaQuery.selectedMedia}
-            />
-            <SortSelector
-              sortSelected={(sortValue) =>
-                setMediaQuery({ ...mediaQuery, sortValue })
-              }
-              selectedMedia={mediaQuery.selectedMedia}
-              sortValue={mediaQuery.sortValue}
-            />
+            <MediaSelector />
+            <SortSelector />
           </SelectorContainer>
-          <MediaGrid mediaQuery={mediaQuery} />
+          <MediaGrid />
         </MainContainer>
       </GridItem>
     </Grid>

@@ -1,16 +1,21 @@
-import { MediaQuery } from "../App";
 import { Media, fetchResponse } from "./useMedia";
 import apiClient from "../services/apiClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import useMediaQueryStore from "../store";
 
-const useSearch = (mediaQuery: MediaQuery, endpoint: string) =>
-  useInfiniteQuery<fetchResponse<Media>, Error>({
+const useSearch = () => {
+  const mediaQuery = useMediaQueryStore((s) => s.mediaQuery);
+
+  const endpoint =
+    mediaQuery.selectedMedia === "TV Shows" ? "/search/tv" : "/search/movie";
+
+  return useInfiniteQuery<fetchResponse<Media>, Error>({
     queryKey: ["media", mediaQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient
         .get<fetchResponse<Media>>(endpoint, {
           params: {
-            query: mediaQuery.searchInput,
+            query: mediaQuery.searchText,
             with_genres: mediaQuery.selectedGenreId,
             page: pageParam,
           },
@@ -22,5 +27,6 @@ const useSearch = (mediaQuery: MediaQuery, endpoint: string) =>
         : undefined;
     },
   });
+};
 
 export default useSearch;

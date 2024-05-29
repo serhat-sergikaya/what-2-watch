@@ -1,7 +1,7 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { MediaQuery } from "../App";
 
 import apiClient from "../services/apiClient";
+import useMediaQueryStore from "../store";
 
 export interface fetchResponse<T> {
   count: number;
@@ -20,15 +20,22 @@ export interface Media {
   page: number;
 }
 
-const useMedia = (mediaQuery: MediaQuery, endpoint: string) =>
-  useInfiniteQuery<fetchResponse<Media>, Error>({
+const useMedia = () => {
+  const mediaQuery = useMediaQueryStore((s) => s.mediaQuery);
+
+  const endpoint =
+    mediaQuery.selectedMedia === "TV Shows"
+      ? "/discover/tv"
+      : "/discover/movie";
+
+  return useInfiniteQuery<fetchResponse<Media>, Error>({
     queryKey: ["media", mediaQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient
         .get<fetchResponse<Media>>(endpoint, {
           params: {
             with_genres: mediaQuery.selectedGenreId,
-            sort_by: mediaQuery.sortValue,
+            sort_by: mediaQuery.sortOrder,
             page: pageParam,
           },
         })
@@ -39,5 +46,6 @@ const useMedia = (mediaQuery: MediaQuery, endpoint: string) =>
         : undefined;
     },
   });
+};
 
 export default useMedia;

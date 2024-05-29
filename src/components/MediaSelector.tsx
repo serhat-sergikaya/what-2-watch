@@ -1,22 +1,21 @@
 import { Button, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
 import { FaChevronDown } from "react-icons/fa";
+import useMediaQueryStore from "../store";
 
-interface Props {
-  onSelectMediaType: (media: string) => void;
-  selectedMedia: string;
-}
+const MediaSelector = () => {
+  const selectedMedia = useMediaQueryStore((s) => s.mediaQuery.selectedMedia);
+  const setSelectedMedia = useMediaQueryStore((s) => s.setSelectedMedia);
 
-const MediaSelector = ({ onSelectMediaType, selectedMedia }: Props) => {
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<FaChevronDown />}>
         {selectedMedia ? selectedMedia : "Movies"}
       </MenuButton>
       <MenuList>
-        <MenuItem key="1" onClick={() => onSelectMediaType("Movies")}>
+        <MenuItem key="1" onClick={() => setSelectedMedia("Movies")}>
           Movies
         </MenuItem>
-        <MenuItem key="2" onClick={() => onSelectMediaType("TV Shows")}>
+        <MenuItem key="2" onClick={() => setSelectedMedia("TV Shows")}>
           TV Shows
         </MenuItem>
       </MenuList>

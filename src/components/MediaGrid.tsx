@@ -1,30 +1,20 @@
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
-import useMedia from "../hooks/useMedia";
-import MediaCard from "./MediaCard";
-import MediaCardSkeleton from "./MediaCardSkeleton";
-import useSearch from "../hooks/useSearch";
-import { MediaQuery } from "../App";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import useMedia from "../hooks/useMedia";
+import useSearch from "../hooks/useSearch";
+import useMediaQueryStore from "../store";
+import MediaCard from "./MediaCard";
+import MediaCardSkeleton from "./MediaCardSkeleton";
 
-interface Props {
-  mediaQuery: MediaQuery;
-}
-
-const MediaGrid = ({ mediaQuery }: Props) => {
-  const endpoint =
-    mediaQuery.selectedMedia === "TV Shows"
-      ? "/discover/tv"
-      : "/discover/movie";
-  const endpointSearch =
-    mediaQuery.selectedMedia === "TV Shows" ? "/search/tv" : "/search/movie";
+const MediaGrid = () => {
+  const mediaQuery = useMediaQueryStore((s) => s.mediaQuery);
 
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    mediaQuery.searchInput
-      ? useSearch(mediaQuery, endpointSearch)
-      : useMedia(mediaQuery, endpoint);
+    mediaQuery.searchText ? useSearch() : useMedia();
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   const totalMedia =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
   return (

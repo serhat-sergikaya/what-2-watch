@@ -1,11 +1,13 @@
 import { Heading } from "@chakra-ui/react";
 import genres from "../data/tv-genres";
+import useMediaQueryStore from "../store";
 
-interface Props {
-  selectedGenreId?: number;
-  selectedMedia: string;
-}
-const MediaHeading = ({ selectedGenreId, selectedMedia }: Props) => {
+const MediaHeading = () => {
+  const selectedGenreId = useMediaQueryStore(
+    (s) => s.mediaQuery.selectedGenreId
+  );
+  const selectedMedia = useMediaQueryStore((s) => s.mediaQuery.selectedMedia);
+
   const selectedGenre = genres.find((g) => g.id === selectedGenreId); // find selected genre by id
 
   const heading = `${selectedGenre?.name || ""} ${selectedMedia || "Movies"}`;

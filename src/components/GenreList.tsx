@@ -8,18 +8,15 @@ import {
 } from "@chakra-ui/react";
 import movieGenres from "../data/movie-genres";
 import tvGenres from "../data/tv-genres";
+import useMediaQueryStore from "../store";
 
-interface Props {
-  selectedGenreId?: number;
-  onGenreSelect: (genreId: number) => void;
-  selectedMedia: string;
-}
+const GenreList = () => {
+  const selectedMedia = useMediaQueryStore((s) => s.mediaQuery.selectedMedia);
+  const setSelectedGenreId = useMediaQueryStore((s) => s.setSelectedGenreId);
+  const selectedGenreId = useMediaQueryStore(
+    (s) => s.mediaQuery.selectedGenreId
+  );
 
-const GenreList = ({
-  onGenreSelect,
-  selectedGenreId,
-  selectedMedia,
-}: Props) => {
   let genres = selectedMedia === "TV Shows" ? tvGenres : movieGenres;
   return (
     <List marginX={5}>
@@ -38,7 +35,7 @@ const GenreList = ({
             <Button
               variant="link"
               size="lg"
-              onClick={() => onGenreSelect(genre.id)}
+              onClick={() => setSelectedGenreId(genre.id)}
               fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
             >
               {genre.name}

@@ -20,9 +20,6 @@ const HomePage = () => {
         lg: "240px 1fr",
       }}
     >
-      <GridItem area="nav">
-        <NavBar />
-      </GridItem>
       <Show above="lg">
         <GridItem area="aside">
           <GenreList />

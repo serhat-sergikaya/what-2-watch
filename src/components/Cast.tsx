@@ -1,4 +1,4 @@
-import { Heading, SimpleGrid } from "@chakra-ui/react";
+import { Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import useCast from "../hooks/useCast";
 import CastMember from "./CastMember";
 interface Props {
@@ -7,13 +7,15 @@ interface Props {
 const Cast = ({ mediaId }: Props) => {
   const { data, isLoading, error } = useCast(mediaId);
 
-  console.log(data);
+  if (isLoading) return <Spinner />;
+
+  if (!data?.cast) return null;
   return (
     <>
       <Heading marginBottom={3}>Top Cast</Heading>
       <SimpleGrid spacing={3} columns={2}>
         {data?.cast.map((cast) => (
-          <CastMember cast={cast} />
+          <CastMember key={cast.id} cast={cast} />
         ))}
       </SimpleGrid>
     </>

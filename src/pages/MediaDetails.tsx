@@ -11,6 +11,7 @@ import {
 import noMediaPhoto from "../assets/No-Image-Placeholder.png";
 import ScoreBadge from "../components/ScoreBadge";
 import Cast from "../components/Cast";
+import MediaVideo from "../components/MediaVideo";
 
 const MediaDetails = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const MediaDetails = () => {
 
   return (
     <>
-      <SimpleGrid columns={2}>
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
         <GridItem>
           <Heading>{media?.title}</Heading>
           <Image src={image_url}></Image>
@@ -36,6 +37,7 @@ const MediaDetails = () => {
           <ScoreBadge media={media!} fontSize={40} borderRadius={10} />
         </GridItem>
         <GridItem>
+          <MediaVideo mediaId={media?.id!} />
           <Cast mediaId={media?.id!} />
         </GridItem>
       </SimpleGrid>

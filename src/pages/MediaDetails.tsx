@@ -7,6 +7,8 @@ import {
   Text,
   SimpleGrid,
   GridItem,
+  Box,
+  VStack,
 } from "@chakra-ui/react";
 import noMediaPhoto from "../assets/No-Image-Placeholder.png";
 import ScoreBadge from "../components/ScoreBadge";
@@ -30,11 +32,20 @@ const MediaDetails = () => {
     <>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
         <GridItem>
-          <Heading>{media?.title}</Heading>
-          <Image src={image_url}></Image>
-          <Heading size="md">Overview</Heading>
-          <Text fontWeight="bold">{media?.overview}</Text>
-          <ScoreBadge media={media!} fontSize={40} borderRadius={10} />
+          <Box p={4} display={{ md: "flex" }}>
+            <Box flexShrink={0}>
+              <Image borderRadius={5} width="450px" src={image_url}></Image>
+            </Box>
+            <VStack marginLeft={{ md: 5 }} spacing={5}>
+              <Heading size="lg">{media?.title}</Heading>
+              <Heading size="sm" color="gray.500">
+                "{media?.tagline}"
+              </Heading>
+              <Heading size="md">Overview</Heading>
+              <Text fontWeight="bold">{media?.overview}</Text>
+              <ScoreBadge media={media!} fontSize={40} borderRadius={10} />
+            </VStack>
+          </Box>
         </GridItem>
         <GridItem>
           <MediaVideo mediaId={media?.id!} />

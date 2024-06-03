@@ -1,4 +1,4 @@
-import React from "react";
+import { Box } from "@chakra-ui/react";
 import useVideos from "../hooks/useVideos";
 import IframeResizer from "@iframe-resizer/react";
 interface Props {
@@ -17,7 +17,7 @@ const MediaVideo = ({ mediaId }: Props) => {
     <IframeResizer
       license="xxx"
       src={youtubeLink}
-      style={{ width: "100%", height: "40%" }}
+      style={{ width: "100%", height: "450px" }}
       allow="fullscreen"
     />
   );

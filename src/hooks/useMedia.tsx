@@ -9,6 +9,11 @@ export interface fetchResponse<T> {
   total_pages: number;
 }
 
+export interface Genre {
+  id: number;
+  name: string;
+}
+
 export interface Media {
   id: number;
   title: string;
@@ -20,6 +25,7 @@ export interface Media {
   page: number;
   overview: string;
   tagline: string;
+  genres: Genre[];
 }
 
 const useMedia = () => {

@@ -11,11 +11,11 @@ const CastMember = ({ cast }: Props) => {
     : no_avatar;
   return (
     <Card direction="row" padding={1}>
-      <Avatar src={avatar} />
+      <Avatar src={avatar} bg="gray.100" size={{ base: "md", md: "xl" }} />
       <Stack>
-        <Box marginLeft={3}>
-          <Heading size="sm">{cast.name}</Heading>
-          <Text>{cast.character}</Text>
+        <Box padding={{ base: "1", md: "5" }}>
+          <Heading size={{ base: "sm", md: "md" }}>{cast.name}</Heading>
+          <Text color="gray.400">{cast.character}</Text>
         </Box>
       </Stack>
     </Card>

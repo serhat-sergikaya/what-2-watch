@@ -9,6 +9,8 @@ import {
   GridItem,
   Box,
   VStack,
+  HStack,
+  Badge,
 } from "@chakra-ui/react";
 import noMediaPhoto from "../assets/No-Image-Placeholder.png";
 import ScoreBadge from "../components/ScoreBadge";
@@ -36,11 +38,16 @@ const MediaDetails = () => {
             <Box flexShrink={0}>
               <Image borderRadius={5} width="450px" src={image_url}></Image>
             </Box>
-            <VStack marginLeft={{ md: 5 }} spacing={5}>
+            <VStack marginLeft={{ md: 5 }} mt={{ sm: 5, md: 0 }} spacing={5}>
               <Heading size="lg">{media?.title}</Heading>
               <Heading size="sm" color="gray.500">
                 "{media?.tagline}"
               </Heading>
+              <HStack>
+                {media?.genres.map((genre) => (
+                  <Badge key={genre.id}>{genre.name}</Badge>
+                ))}
+              </HStack>
               <Heading size="md">Overview</Heading>
               <Text fontWeight="bold">{media?.overview}</Text>
               <ScoreBadge media={media!} fontSize={40} borderRadius={10} />

@@ -18,6 +18,8 @@ export interface Media {
   name: string;
   first_air_date: string;
   page: number;
+  overview: string;
+  tagline: string;
 }
 
 const useMedia = () => {

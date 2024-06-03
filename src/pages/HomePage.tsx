@@ -4,7 +4,6 @@ import MainContainer from "../components/MainContainer";
 import MediaGrid from "../components/MediaGrid";
 import MediaHeading from "../components/MediaHeading";
 import MediaSelector from "../components/MediaSelector";
-import NavBar from "../components/NavBar";
 import SelectorContainer from "../components/SelectorContainer";
 import SortSelector from "../components/SortSelector";
 

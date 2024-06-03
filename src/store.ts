@@ -23,7 +23,7 @@ const useMediaQueryStore = create<MediaQueryStore>((set) => ({
   setSelectedMedia: (selectedMedia: string) =>
     set(() => ({ mediaQuery: { selectedMedia } })),
   setSearchText: (searchText: string) =>
-    set((store) => ({ mediaQuery: { ...store.mediaQuery, searchText } })),
+    set(() => ({ mediaQuery: { searchText } })),
   setSortOrder: (sortOrder: string) =>
     set((store) => ({
       mediaQuery: { ...store.mediaQuery, sortOrder },

@@ -24,7 +24,11 @@ const MediaGrid = () => {
       hasMore={hasNextPage || false}
       loader={<Spinner />}
     >
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 4, xl: 5 }} spacing={6}>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 4, xl: 5 }}
+        spacing={6}
+        marginTop={5}
+      >
         {error && <Text>{error.message}</Text>}
 
         {isLoading &&
@@ -33,7 +37,7 @@ const MediaGrid = () => {
         {data?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results.map((media) => (
-              <MediaCard key={media.id} movie={media} />
+              <MediaCard key={media.id} media={media} />
             ))}
           </React.Fragment>
         ))}

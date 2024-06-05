@@ -1,4 +1,3 @@
-import { Box } from "@chakra-ui/react";
 import useVideos from "../hooks/useVideos";
 import IframeResizer from "@iframe-resizer/react";
 interface Props {

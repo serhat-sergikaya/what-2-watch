@@ -32,7 +32,7 @@ const Cast = ({ mediaId }: Props) => {
         <Button
           size="sm"
           fontWeight="bold"
-          colorScheme="gray"
+          colorScheme="orange"
           leftIcon={show ? <FaChevronUp /> : <FaChevronDown />}
           onClick={() => setShow(!show)}
         >

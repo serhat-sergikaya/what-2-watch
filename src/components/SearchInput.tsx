@@ -1,12 +1,16 @@
 import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import useMediaQueryStore from "../store";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const setSearchText = useMediaQueryStore((s) => s.setSearchText);
 
+  const nav = useNavigate();
+
   const handleChange = (searchText: string) => {
     setSearchText(searchText);
+    nav("/");
   };
   return (
     <InputGroup>

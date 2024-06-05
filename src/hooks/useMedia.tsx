@@ -14,6 +14,12 @@ export interface Genre {
   name: string;
 }
 
+export interface Company {
+  id: number;
+  logo_path: string;
+  name: string;
+}
+
 export interface Media {
   id: number;
   title: string;
@@ -26,6 +32,9 @@ export interface Media {
   overview: string;
   tagline: string;
   genres: Genre[];
+  popularity: number;
+  production_companies: Company[];
+  original_language: string;
 }
 
 const useMedia = () => {

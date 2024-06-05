@@ -15,8 +15,10 @@ import ScoreBadge from "./ScoreBadge";
 
 interface Props {
   media: Media;
+  headingSize?: string;
+  attributeSize?: string;
 }
-const MediaCard = ({ media }: Props) => {
+const MediaCard = ({ media, headingSize }: Props) => {
   let date = media.release_date
     ? Moment(media.release_date).format("MMM YYYY")
     : "";
@@ -43,14 +45,14 @@ const MediaCard = ({ media }: Props) => {
         <Image src={image_url} />
         <CardBody>
           <HStack marginBottom={2} justifyContent="space-between">
-            <Text>
+            <Text fontSize={15}>
               {date}
               {showDate}
             </Text>
             <ScoreBadge media={media} fontSize={15} borderRadius={3} />
           </HStack>
           <Heading
-            fontSize="2xl"
+            fontSize={headingSize ? headingSize : "2xl"}
             _hover={{ color: "gray.500", transition: "color .15s ease-in" }}
           >
             <Link to={"/media/" + media.id}>

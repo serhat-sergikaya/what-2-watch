@@ -22,7 +22,9 @@ const Cast = ({ mediaId }: Props) => {
   if (!data?.cast) return null;
   return (
     <>
-      <Heading marginBottom={3}>Top Cast</Heading>
+      <Heading marginBottom={3} size="lg">
+        Top Cast
+      </Heading>
       <SimpleGrid spacing={3} columns={2}>
         {res?.map((cast) => (
           <CastMember key={cast.id} cast={cast} />

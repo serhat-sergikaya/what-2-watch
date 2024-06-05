@@ -28,7 +28,7 @@ const MediaAttributes = ({ media }: Props) => {
       </DefinitionItem>
       <DefinitionItem term="Production Companies">
         {media.production_companies.map((company) => (
-          <Text>{company.name}</Text>
+          <Text key={media.id}>{company.name}</Text>
         ))}
       </DefinitionItem>
       <DefinitionItem term="Original Language">

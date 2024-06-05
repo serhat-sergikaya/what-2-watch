@@ -1,4 +1,4 @@
-import { Flex, GridItem, SimpleGrid, Spinner } from "@chakra-ui/react";
+import { GridItem, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import useMediaDetails from "../hooks/useMediaDetails";
 

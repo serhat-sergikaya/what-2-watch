@@ -1,3 +1,4 @@
+import { Spinner } from "@chakra-ui/react";
 import useVideos from "../hooks/useVideos";
 import IframeResizer from "@iframe-resizer/react";
 interface Props {
@@ -12,6 +13,10 @@ const MediaVideo = ({ mediaId }: Props) => {
   const youtubeLink = "https://www.youtube.com/embed/" + videoKey;
 
   console.log(youtubeLink);
+
+  if (isLoading) return <Spinner />;
+
+  if (error) throw error;
   return (
     <IframeResizer
       license="xxx"

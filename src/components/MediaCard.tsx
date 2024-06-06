@@ -2,7 +2,6 @@ import { Media } from "../hooks/useMedia";
 import Moment from "moment";
 import noMediaPhoto from "../assets/No-Image-Placeholder.png";
 import {
-  Badge,
   Box,
   Card,
   CardBody,
@@ -50,7 +49,7 @@ const MediaCard = ({ media, headingSize }: Props) => {
               {date}
               {showDate}
             </Text>
-            <ScoreBadge media={media} q fontSize={15} borderRadius={3} />
+            <ScoreBadge media={media} fontSize={15} borderRadius={3} />
           </HStack>
           <Heading
             fontSize={headingSize ? headingSize : "2xl"}

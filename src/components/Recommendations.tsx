@@ -24,7 +24,7 @@ const Recommendations = ({ mediaId }: Props) => {
     if (window.innerWidth < 768) setPageSize(2);
     if (window.innerWidth >= 768) setPageSize(4);
     if (window.innerWidth >= 992) setPageSize(6);
-    if (window.innerWidth >= 1200) setPageSize(10);
+    if (window.innerWidth >= 1200) setPageSize(8);
     if (window.innerWidth >= 1500) setPageSize(10);
   });
 

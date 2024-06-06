@@ -1,7 +1,7 @@
 import { Button, HStack, Heading, Spinner } from "@chakra-ui/react";
 import useRecommended from "../hooks/useRecommended";
 import MediaCard from "./MediaCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaChevronLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa6";
 
@@ -9,12 +9,29 @@ interface Props {
   mediaId: number;
 }
 const Recommendations = ({ mediaId }: Props) => {
-  const pageSize = 10;
+  const [pageSize, setPageSize] = useState(10);
   const [page, setPage] = useState(1);
+
+  window.onresize = () => {
+    if (window.innerWidth < 768) setPageSize(2);
+    if (window.innerWidth >= 768) setPageSize(4);
+    if (window.innerWidth >= 992) setPageSize(6);
+    if (window.innerWidth >= 1200) setPageSize(8);
+    if (window.innerWidth >= 1500) setPageSize(10);
+  };
+
+  useEffect(() => {
+    if (window.innerWidth < 768) setPageSize(2);
+    if (window.innerWidth >= 768) setPageSize(4);
+    if (window.innerWidth >= 992) setPageSize(6);
+    if (window.innerWidth >= 1200) setPageSize(10);
+    if (window.innerWidth >= 1500) setPageSize(10);
+  });
 
   const { data, isLoading, error } = useRecommended({
     mediaId,
     page,
+    pageSize,
   });
 
   const res = data?.results.slice((page - 1) * pageSize, page * pageSize);

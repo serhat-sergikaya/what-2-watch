@@ -10,6 +10,7 @@ interface FetchRecomResponse<T> {
 interface RecomQuery {
   mediaId: number;
   page: number;
+  pageSize: number;
 }
 const useRecommended = (query: RecomQuery) => {
   return useQuery({

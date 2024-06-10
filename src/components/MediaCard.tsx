@@ -8,6 +8,7 @@ import {
   HStack,
   Heading,
   Image,
+  Stack,
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
@@ -17,8 +18,9 @@ interface Props {
   media: Media;
   headingSize?: string;
   attributeSize?: string;
+  headingHeight?: boolean;
 }
-const MediaCard = ({ media, headingSize }: Props) => {
+const MediaCard = ({ media, headingSize, headingHeight }: Props) => {
   let date = media.release_date
     ? Moment(media.release_date).format("MMM YYYY")
     : "";
@@ -42,7 +44,9 @@ const MediaCard = ({ media, headingSize }: Props) => {
       overflow="hidden"
     >
       <Card>
-        <Image src={image_url} />
+        <Link to={"/media/" + media.id}>
+          <Image src={image_url} />
+        </Link>
         <CardBody>
           <HStack marginBottom={2} justifyContent="space-between">
             <Text fontSize={15}>
@@ -51,14 +55,29 @@ const MediaCard = ({ media, headingSize }: Props) => {
             </Text>
             <ScoreBadge media={media} fontSize={15} borderRadius={3} />
           </HStack>
-          <Heading
-            fontSize={headingSize ? headingSize : "2xl"}
-            _hover={{ color: "gray.500", transition: "color .15s ease-in" }}
+          <Stack
+            height={
+              headingHeight
+                ? "50"
+                : {
+                    sm: "40px",
+                    md: "40px",
+                    lg: "50px",
+                    xl: "70px",
+                    "2xl": "80px",
+                  }
+            }
+            justifyContent="space-around"
           >
-            <Link to={"/media/" + media.id}>
-              {media.title} {media.name}
-            </Link>
-          </Heading>
+            <Heading
+              fontSize={headingSize ? headingSize : "xl"}
+              _hover={{ color: "gray.500", transition: "color .15s ease-in" }}
+            >
+              <Link to={"/media/" + media.id}>
+                {media.title} {media.name}
+              </Link>
+            </Heading>
+          </Stack>
         </CardBody>
       </Card>
     </Box>

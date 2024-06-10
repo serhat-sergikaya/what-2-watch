@@ -25,7 +25,7 @@ const MediaGrid = () => {
       loader={<Spinner />}
     >
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 4, xl: 5 }}
+        columns={{ sm: 1, md: 2, lg: 3, xl: 4, "2xl": 6 }}
         spacing={6}
         marginTop={5}
       >

@@ -51,7 +51,7 @@ const Recommendations = ({ mediaId }: Props) => {
           <FaChevronLeft />
         </Button>
         {res?.map((media) => (
-          <MediaCard media={media} headingSize="sm" />
+          <MediaCard media={media} headingSize="md" headingHeight={true} />
         ))}
         <Button
           isDisabled={page === data?.total_pages}

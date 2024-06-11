@@ -1,11 +1,6 @@
 import { useParams } from "react-router-dom";
 import usePeople from "../hooks/usePeople";
-import {
-  Image,
-  Spinner,
-  Box,
-  VStack,
-} from "@chakra-ui/react";
+import { Image, Spinner, Box, VStack } from "@chakra-ui/react";
 import no_avatar from "../assets/no_avatar.png";
 
 import KnownFor from "../components/KnownFor";
@@ -26,7 +21,7 @@ const PersonDetails = () => {
 
   return (
     <>
-      <Box display={{ "2xl": "flex" }}>
+      <Box display={{ "2xl": "flex" }} mb={10}>
         <VStack flexShrink={0}>
           <Image src={avatar} borderRadius={5} width={400} />
         </VStack>

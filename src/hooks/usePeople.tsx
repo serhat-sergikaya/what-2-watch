@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import apiClient from "../services/apiClient";
 
-interface Person {
+export interface Person {
   id: number;
   name: string;
   biography: string;

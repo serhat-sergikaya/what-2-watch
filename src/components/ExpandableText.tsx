@@ -7,11 +7,11 @@ interface Props {
 const ExpandableText = ({ children }: Props) => {
   const [expanded, setExpanded] = useState(false);
 
-  const limit = 340;
+  const limit = 1800;
 
-  const sum = expanded ? children : children?.substring(0, 1800) + "...";
+  const sum = expanded ? children : children?.substring(0, limit) + "...";
 
-  if (children?.length <= 1800) return <Text>{children}</Text>;
+  if (children?.length <= limit) return <Text>{children}</Text>;
   return (
     <Text>
       {sum}

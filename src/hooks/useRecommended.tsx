@@ -9,8 +9,6 @@ interface FetchRecomResponse<T> {
 }
 interface RecomQuery {
   mediaId: number;
-  page: number;
-  pageSize: number;
 }
 const useRecommended = (query: RecomQuery) => {
   return useQuery({
@@ -18,12 +16,7 @@ const useRecommended = (query: RecomQuery) => {
     queryFn: () =>
       apiClient
         .get<FetchRecomResponse<Media>>(
-          `/movie/${query.mediaId}/recommendations`,
-          {
-            params: {
-              page: query.page,
-            },
-          }
+          `/movie/${query.mediaId}/recommendations`
         )
         .then((res) => res.data),
     keepPreviousData: true,

@@ -4,6 +4,7 @@
  **What 2 Watch** is a website that allows users to search for movies and series using sorting paramaters.
  The website is connected to [The Movie Database API](https://developer.themoviedb.org/docs/getting-started). TMDB provides data for movies and series including their details such as cast members, production companies etc.
  It also allows to add query parameters to narrow down the search.
+ React Query is used for API calls, Zustand for Global State Management and React Router for navigation.
  
   Check it out
  👉  [Live Demo](https://what-2-watch-omega.vercel.app/)
